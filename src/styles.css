@@ -1,11 +1,17 @@
 :root {
-  --bg-page: hsl(265, 100%, 91%);
-  --bg-calendar: hsl(0, 0%, 0%);
+  --bg-page: linear-gradient(
+    45deg,
+    hsl(182, 100%, 50%),
+    hsl(197, 100%, 50%),
+    hsl(197, 100%, 38%)
+  );
+  --bg-calendar: hsla(0, 0%, 0%, 0.367);
   --text: hsl(0, 0%, 95%);
-  --header-bg-color: rgb(0, 219, 253);
+  --header-bg-color: hsla(0, 40%, 98%, 0.9);
   --header-text-color: rgb(0, 0, 0);
-  --today-bg-color: rgb(255, 198, 118);
-  --today-text-color: rgb(0, 0, 0);
+  --today-bg-color: rgba(0, 0, 0, 0.69);
+  --today-text-color: rgb(255, 255, 255);
+  --day-border: rgb(255, 255, 255);
 }
 
 *,
@@ -24,25 +30,27 @@ body {
 .wrapper {
   width: 100%;
   height: 100vh;
-  background-color: var(--bg-page);
+  background: var(--bg-page);
   display: flex;
   justify-content: center;
   align-items: center;
 }
 
 .calendar {
-  background-color: var(--bg-calendar);
+  background: var(--bg-calendar);
   color: var(--text);
   width: 28.5rem;
   height: 32.5rem;
   border-radius: 10px;
+  -webkit-filter: blur(50);
+  filter: blur(50);
   box-shadow: 4px 4px 8px black;
 }
 
 .month {
   width: 100%;
   height: 7.5rem;
-  background-color: var(--header-bg-color);
+  background: var(--header-bg-color);
   text-align: center;
   border-radius: 9px 9px 0 0;
 }
@@ -82,6 +90,7 @@ body {
   display: flex;
   align-items: center;
   justify-content: center;
+  border-bottom: 2px solid white;
 }
 
 .days {
@@ -94,7 +103,7 @@ body {
 .days div {
   font-size: 0.8rem;
   margin: 0.19rem;
-  width: 3.6rem;
+  width: 3.65rem;
   height: 3.125rem;
   display: flex;
   justify-content: center;
@@ -102,7 +111,7 @@ body {
 }
 
 .days div:hover:not(.empty) {
-  border: 2px solid gray;
+  border: 2px solid var(--day-border);
   cursor: pointer;
 }
 
@@ -110,4 +119,15 @@ body {
   background-color: var(--today-bg-color);
   color: var(--today-text-color);
   font-weight: 700;
+}
+
+@media only screen and (max-width: 480px) {
+  .calendar {
+    width: 21rem;
+    height: 32.5rem;
+  }
+  .days div {
+    width: 3.08rem;
+    height: 3.125rem;
+  }
 }
